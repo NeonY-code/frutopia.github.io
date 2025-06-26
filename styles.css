@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(180deg, #0a1929 0%, #1a2332 100%);
+    color: white;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+}
+
+.music-icon {
+    width: 24px;
+    height: 24px;
+    background: #4dabf7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+.cancel-btn {
+    color: #74c0fc;
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.progress-section {
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.progress-title {
+    color: #74c0fc;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 15px;
+}
+
+.progress-segment {
+    height: 20px;
+    background: #4dabf7;
+    border-radius: 2px;
+    flex: 1;
+}
+
+.progress-segment.empty {
+    background: #2c3e50;
+}
+
+.progress-text {
+    text-align: right;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+
+.plant-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+}
+
+.plant {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    position: relative;
+}
+
+.plant:hover {
+    transform: scale(1.05);
+}
+
+.plant:active {
+    transform: scale(0.95);
+}
+
+.plant-emoji {
+    font-size: 80px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 100px;
+}
+
+.plant-name {
+    color: #74c0fc;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.water-btn {
+    background: linear-gradient(135deg, #4dabf7 0%, #339af0 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 30px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(77, 171, 247, 0.3);
+}
+
+.water-btn:hover {
+    background: linear-gradient(135deg, #339af0 0%, #228be6 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(77, 171, 247, 0.4);
+}
+
+.water-btn:active {
+    transform: translateY(0);
+}
+
+.water-icon {
+    font-size: 24px;
+}
+
+.stats {
+    flex-shrink: 0;
+    margin-bottom: 15px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.stat-icon {
+    font-size: 18px;
+    width: 20px;
+}
+
+.stat-value {
+    color: #74c0fc;
+    font-weight: 600;
+}
+
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0 5px 0;
+    border-top: 1px solid #2c3e50;
+    flex-shrink: 0;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    color: #74c0fc;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.nav-item:hover {
+    opacity: 0.8;
+}
+
+.nav-icon {
+    font-size: 18px;
+}
+
+.water-animation {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #4dabf7;
+    font-size: 20px;
+    animation: waterDrop 1s ease-out;
+    pointer-events: none;
+}
+
+@keyframes waterDrop {
+    0% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-10px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-50px);
+    }
+}
+
+.click-effect {
+    position: absolute;
+    color: #4dabf7;
+    font-weight: bold;
+    pointer-events: none;
+    animation: clickEffect 1s ease-out forwards;
+}
+
+@keyframes clickEffect {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.5) translateY(-30px);
+    }
+}
+
+/* Inventory Styles */
+.inventory-container {
+    background: linear-gradient(180deg, #0a1929 0%, #1a2332 100%);
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    color: #74c0fc;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.back-btn:hover {
+    background: rgba(116, 192, 252, 0.1);
+}
+
+.inventory-count {
+    color: #74c0fc;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.inventory-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Изменено на 2 колонки */
+    gap: 12px;
+    padding: 15px 0;
+    overflow-y: auto;
+    max-height: calc(100vh - 160px);
+}
+
+.fruit-slot {
+    aspect-ratio: 1;
+    background: #2c3e50;
+    border-radius: 12px;
+    border: 2px solid #34495e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.2s ease;
+    padding: 8px;
+}
+
+.fruit-slot.unlocked {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    border-color: #60a5fa;
+    box-shadow: 0 2px 8px rgba(96, 165, 250, 0.3);
+}
+
+.fruit-slot.collected {
+    background: linear-gradient(135deg, #166534 0%, #22c55e 100%);
+    border-color: #4ade80;
+    box-shadow: 0 2px 8px rgba(74, 222, 128, 0.3);
+}
+
+.fruit-emoji {
+    font-size: 48px; /* Увеличен размер эмодзи */
+    margin-bottom: 8px;
+}
+
+.fruit-name {
+    font-size: 12px; /* Увеличен размер текста */
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.fruit-slot.locked .fruit-name {
+    color: #6b7280;
+}
+
+.lock-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 16px; /* Увеличен размер замка */
+    color: #6b7280;
+}
+
+.fruit-number {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 12px; /* Увеличен размер номера */
+    color: #6b7280;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.collected-badge {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    font-size: 16px; /* Увеличен размер бейджа */
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.2);
+    padding: 2px 4px;
+    border-radius: 4px;
+}
