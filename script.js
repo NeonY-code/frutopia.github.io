@@ -1,6 +1,6 @@
 class FrutopiaGame {
     constructor(telegram_id, userName) {
-        this.backendUrl = "https://ac99fb76-c7ab-4a6d-8eab-4093fe814f0a-00-3mcr68k5zte4w.worf.replit.dev/";
+        this.backendUrl = "https://ac99fb76-c7ab-4a6d-8eab-4093fe814f0a-00-3mcr68k5zte4w.worf.replit.dev";
         this.telegram_id = telegram_id;
         this.userName = userName;
 
@@ -168,6 +168,10 @@ class FrutopiaGame {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+    console.log("window.Telegram:", window.Telegram);
+    console.log("window.Telegram.WebApp:", window.Telegram?.WebApp);
+    console.log("window.Telegram.WebApp.initDataUnsafe:", window.Telegram?.WebApp?.initDataUnsafe);
+
     let telegram_id = localStorage.getItem('telegram_id');
     let userName = localStorage.getItem('user_name');
 
@@ -191,4 +195,3 @@ window.addEventListener('DOMContentLoaded', () => {
 
     window.game = new FrutopiaGame(telegram_id, userName);
 });
-
