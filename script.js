@@ -1,6 +1,6 @@
 class FrutopiaGame {
     constructor(telegram_id, userName) {
-        this.backendUrl = "https://your-replit-backend-url.repl.co";
+        this.backendUrl = "https://ac99fb76-c7ab-4a6d-8eab-4093fe814f0a-00-3mcr68k5zte4w.worf.replit.dev/";
         this.telegram_id = telegram_id;
         this.userName = userName;
 
@@ -168,7 +168,27 @@ class FrutopiaGame {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    const telegram_id = 123456789;
-    const userName = "UserName";
+    let telegram_id = localStorage.getItem('telegram_id');
+    let userName = localStorage.getItem('user_name');
+
+    if (!telegram_id || !userName) {
+        if (window.Telegram && Telegram.WebApp && Telegram.WebApp.initDataUnsafe) {
+            const user = Telegram.WebApp.initDataUnsafe.user;
+            if (user && user.id && user.first_name) {
+                telegram_id = user.id;
+                userName = user.first_name;
+                localStorage.setItem('telegram_id', telegram_id);
+                localStorage.setItem('user_name', userName);
+            } else {
+                alert("Cannot get information from Telegram WebApp.");
+                return;
+            }
+        } else {
+            alert("Telegram WebApp is not availeble.");
+            return;
+        }
+    }
+
     window.game = new FrutopiaGame(telegram_id, userName);
 });
+
