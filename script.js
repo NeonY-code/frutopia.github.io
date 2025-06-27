@@ -168,10 +168,6 @@ class FrutopiaGame {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    alert("window.Telegram:"+window.Telegram);
-    alert("window.Telegram.WebApp:"+ window.Telegram?.WebApp);
-    alert("window.Telegram.WebApp.initDataUnsafe:"+window.Telegram?.WebApp?.initDataUnsafe);
-
     let telegram_id = localStorage.getItem('telegram_id');
     let userName = localStorage.getItem('user_name');
 
